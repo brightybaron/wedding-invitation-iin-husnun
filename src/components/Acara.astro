@@ -2,13 +2,13 @@
 import { dateFormatter } from "@lib/utils";
 import DualHeading from "@components/DualHeading.astro";
 import ornament5 from "@assets/dekorasi/ornamen-5.png";
+import ornamentMiddle from "@assets/dekorasi/ornament-middle.png";
 import { Image } from "astro:assets";
 ---
 
 <section class="relative overflow-hidden pb-24">
   <div
-    class="lg:max-w-4xl md:max-w-3xl max-w-[90%] mx-auto px-4 md:mt-32 mt-16 border-8 border-double border-spacing-4 border-blue-jeans rounded-full shadow-2xl overflow-hidden relative"
-    style={`background-image: url('/src/assets/dekorasi/bg-main.webp');background-size: cover;background-position: center;background-repeat: no-repeat;`}
+    class="lg:max-w-4xl md:max-w-3xl max-w-[90%] mx-auto px-4 md:mt-32 mt-16 border-8 border-double border-spacing-4 border-blue-jeans rounded-full shadow-2xl overflow-hidden relative bg-white"
   >
     <div class="absolute -top-6 left-0 right-0 w-full">
       <div class="mx-auto w-2/5 md:w-1/5">
@@ -18,42 +18,75 @@ import { Image } from "astro:assets";
 
     <div class="absolute -bottom-2 left-0 right-0 w-full">
       <div class="mx-auto w-4/5 md:w-1/3">
-        <img
-          src="/src/assets/dekorasi/ornament-middle.png"
-          alt="ornament top"
-        />
+        <Image src={ornamentMiddle} alt="ornament middle" />
       </div>
     </div>
 
     <div
-      class="flex flex-wrap flex-col sm:flex-row justify-evenly py-24 text-center gap-12"
+      class="flex flex-wrap flex-col sm:flex-row justify-evenly py-24 text-center gap-12 relative"
     >
-      <div class="flex flex-col space-y-1">
+      <div class="flex flex-col">
         <DualHeading word1="Akad" word2="Nikah" wordBg="AKAD" />
-        <p class="font-semibold underline">{dateFormatter("June 13, 2025")}</p>
-        <p class="font-medium">08.00 WIB</p>
-        <p>Lokasi</p>
-        <p class="font-medium">Rumah mempelai wanita</p>
-        <p>Jl. Pasir Raya No. 17D PPI, Manyar, Gresik</p>
-        <button
-          class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
-        >
-          <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
-        </button>
+        <div class="grid grid-cols-3">
+          <div class="col-span-1 flex items-center justify-center px-2">
+            <p class="text-xl font-semibold">Jumat</p>
+          </div>
+          <div class="col-span-1 border-x-2 border-blue-jeans">
+            <div class="flex flex-col items-center justify-center">
+              <p class="text-3xl font-bold">13</p>
+              <p class="text-xl font-semibold">Juni</p>
+            </div>
+          </div>
+          <div class="col-span-1 flex items-center justify-center px-2">
+            <p class="text-xl font-semibold">2025</p>
+          </div>
+        </div>
+        <div class="mt-2 space-y-1">
+          <p class="font-bold">08.00 WIB</p>
+          <p class="text-sm font-medium">Tempat acara :</p>
+          <p class="font-semibold">Kediaman mempelai wanita</p>
+          <p>Jl. Pasir Raya No.17D PPI, Manyar, Gresik</p>
+          <button
+            class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
+          >
+            <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
+          </button>
+        </div>
       </div>
-      <hr class="sm:hidden block" />
+
+      <div
+        class="hidden sm:block w-1 bg-blue-jeans absolute h-[50%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      >
+      </div>
+      <hr class="sm:hidden block w-1/2 mx-auto border-blue-jeans" />
+
       <div class="flex flex-col space-y-1">
         <DualHeading word1="Resepsi" word2="Pernikahan" wordBg="RESEPSI" />
-        <p class="font-semibold underline">{dateFormatter("June 14, 2025")}</p>
-        <p class="font-medium">19.00 WIB</p>
-        <p>Lokasi</p>
-        <p class="font-medium">Wisma Achmad Yani - Semen Gresik</p>
-        <p>Jl. Veteran No. 61 Gresik</p>
-        <button
-          class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
-        >
-          <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
-        </button>
+        <div class="grid grid-cols-3">
+          <div class="col-span-1 flex items-center justify-center px-2">
+            <p class="text-xl font-semibold">Sabtu</p>
+          </div>
+          <div class="col-span-1 border-x-2 border-blue-jeans">
+            <div class="flex flex-col items-center justify-center">
+              <p class="text-3xl font-bold">14</p>
+              <p class="text-xl font-semibold">Juni</p>
+            </div>
+          </div>
+          <div class="col-span-1 flex items-center justify-center px-2">
+            <p class="text-xl font-semibold">2025</p>
+          </div>
+        </div>
+        <div class="mt-2 space-y-1">
+          <p class="font-bold">19.00 WIB</p>
+          <p class="text-sm font-medium">Tempat acara :</p>
+          <p class="font-semibold">WIsma Djendral Achmad Yani - Semen Gresik</p>
+          <p>Jl. Veteran No.61 Gresik</p>
+          <button
+            class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
+          >
+            <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
+          </button>
+        </div>
       </div>
     </div>
   </div>
