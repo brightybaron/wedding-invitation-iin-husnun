@@ -1,11 +1,13 @@
 ---
 import DualHeading from "@components/DualHeading.astro";
 import WeddingGiftButton from "@components/WeddingGiftButton";
+import ornament5 from "@assets/dekorasi/ornamen-5.png";
+import { Image } from "astro:assets";
 ---
 
 <section class="bg-blueish-gray pb-6">
   <div class="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
-    <img src="/src/assets/dekorasi/ornamen-5.webp" alt="ornamen blue flower" />
+    <Image src={ornament5} alt="ornamen blue flower" />
   </div>
   <div class="mx-auto sm:px-16 px-4 sm:w-8/12 w-full">
     <DualHeading word1="Wedding" word2="Gift" wordBg="GIFT" />
