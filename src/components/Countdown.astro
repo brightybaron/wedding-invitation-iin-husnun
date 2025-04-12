@@ -1,0 +1,85 @@
+---
+
+---
+
+<section class="bg-blueish-gray py-4">
+  <div class="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
+    <img src="/src/assets/dekorasi/ornamen-5.webp" alt="ornamen blue flower" />
+  </div>
+  <div class="container text-white mx-auto sm:px-16 px-4 sm:w-8/12 w-full">
+    <p
+      class="text-center sm:text-4xl text-2xl font-semibold mb-4 font-parisienne"
+    >
+      Save The Date
+    </p>
+    <div class="grid grid-cols-4 text-center gap-x-2">
+      <div class="">
+        <h3 id="hari" class="font-semibold text-xl"></h3>
+        <p>Hari</p>
+      </div>
+      <div class="">
+        <h3 id="jam" class="font-semibold text-xl"></h3>
+        <p>Jam</p>
+      </div>
+      <div class="">
+        <h3 id="menit" class="font-semibold text-xl"></h3>
+        <p>Menit</p>
+      </div>
+      <div class="">
+        <h3 id="detik" class="font-semibold text-xl"></h3>
+        <p>Detik</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // const { targetDate, targetTime } = Astro.props;
+  const targetDate = "June 14, 2025";
+  const targetTime = "08:00";
+
+  // Initialize the countdown values
+  let hari = 0;
+  let jam = 0;
+  let menit = 0;
+  let detik = 0;
+
+  function startCountdown() {
+    const countDownDate = new Date(`${targetDate} ${targetTime}`).getTime();
+    const setHari = document.getElementById("hari") as HTMLElement;
+    const setJam = document.getElementById("jam") as HTMLElement;
+    const setMenit = document.getElementById("menit") as HTMLElement;
+    const setDetik = document.getElementById("detik") as HTMLElement;
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const remainingTime = countDownDate - now;
+
+      if (remainingTime < 0) {
+        hari = 0;
+        jam = 0;
+        menit = 0;
+        detik = 0;
+        clearInterval(interval); // Stop the countdown when time has passed
+      } else {
+        hari = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+        jam = Math.floor(
+          (remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        menit = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        detik = Math.floor((remainingTime % (1000 * 60)) / 1000);
+      }
+
+      // Update the HTML content
+      setHari.textContent = hari.toString();
+      setJam.textContent = jam.toString();
+      setMenit.textContent = menit.toString();
+      setDetik.textContent = detik.toString();
+    };
+
+    const interval = setInterval(updateCountdown, 1000);
+  }
+
+  // Start the countdown when the component is loaded
+  setTimeout(startCountdown, 0);
+</script>

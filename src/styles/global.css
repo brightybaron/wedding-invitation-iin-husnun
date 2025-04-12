@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Monsieur+La+Doulaise&family=Parisienne&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tangerine:wght@400;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
+  --font-bonheur-royale: "Bonheur Royale", cursive;
+  --font-monsieur-la-doulaise: "Monsieur La Doulaise", cursive;
+  --font-parisienne: "Parisienne", cursive;
+  --font-playfair-display: "Playfair Display", serif;
+  --font-tangerine: "Tangerine", cursive;
+  --color-blue-jeans: #2c4564;
+  --color-blueish-gray: #5d8094;
+  --animate-slide-down: slideDown 1.5s ease-in-out infinite;
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+}

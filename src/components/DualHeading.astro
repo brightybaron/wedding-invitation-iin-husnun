@@ -1,0 +1,33 @@
+---
+const { word1, word2, wordBg } = Astro.props;
+
+interface Props {
+  word1: string;
+  word2: string;
+  wordBg: string;
+}
+---
+
+<div class="container">
+  <div class="relative">
+    <h2
+      class={`flex flex-row pb-0 justify-center text-center text-[calc(3rem+1.2vw)] items-center relative`}
+    >
+      <span
+        class="absolute z-10 w-full text-center text-black/5 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold font-playfair-display"
+      >
+        {wordBg}
+      </span>
+      <span
+        class="relative z-10 overflow-hidden inline-block font-bold leading-[1.6em] m-0 font-playfair-display"
+      >
+        <span class="text-[50%] py-0 px-[3px]">{word1}</span>
+      </span>
+      <span
+        class="relative z-10 overflow-hidden inline-block text-[70%] leading-[1.6em] mt-0 -mb-10 -ml-12 font-tangerine"
+      >
+        <span class="block pl-5 pt-5 pb-0 text-shadow-sm">{word2}</span>
+      </span>
+    </h2>
+  </div>
+</div>

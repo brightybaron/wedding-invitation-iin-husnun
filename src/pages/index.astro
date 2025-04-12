@@ -1,0 +1,77 @@
+---
+import Acara from "@components/Acara.astro";
+import Ayat from "@components/Ayat.astro";
+import Countdown from "@components/Countdown.astro";
+import Hero from "@components/Hero.astro";
+import Mempelai from "@components/Mempelai.astro";
+import WeddingGift from "@components/WeddingGift";
+import Layout from "@layouts/Layout.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+  <Hero>
+    <div
+      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+  </Hero>
+  <Ayat />
+  <Mempelai>
+    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+  </Mempelai>
+  <Countdown />
+  <Acara>
+    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+
+    <div
+      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+  </Acara>
+  <WeddingGift client:load />
+</Layout>
