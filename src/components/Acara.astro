@@ -1,6 +1,8 @@
 ---
 import { dateFormatter } from "@lib/utils";
-import DualHeading from "./DualHeading.astro";
+import DualHeading from "@components/DualHeading.astro";
+import ornament5 from "@assets/dekorasi/ornamen-5.png";
+import { Image } from "astro:assets";
 ---
 
 <section class="relative overflow-hidden pb-24">
@@ -9,11 +11,7 @@ import DualHeading from "./DualHeading.astro";
   >
     <div class="absolute -top-2 left-0 right-0 w-full">
       <div class="mx-auto w-2/5 md:w-1/5">
-        <img
-          src="/src/assets/dekorasi/ornamen-5.png"
-          alt="ornament top"
-          class="rotate-180"
-        />
+        <Image src={ornament5} alt="ornament top" class="rotate-180" />
       </div>
     </div>
 
