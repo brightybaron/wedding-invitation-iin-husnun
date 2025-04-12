@@ -1,13 +1,14 @@
+---
+import ornamenBird from "@assets/dekorasi/bird-couple.png";
+import { Image } from "astro:assets";
+---
+
 <section class="bg-blueish-gray relative">
   <div
     class="max-w-5xl mx-auto p-6 h-full flex flex-col items-center justify-center"
   >
     <div class="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
-      <img
-        src="/src/assets/dekorasi/bird-couple.png"
-        alt="ornamen bird"
-        class="invert"
-      />
+      <Image src={ornamenBird} alt="ornamen bird" class="invert" />
     </div>
     <p class="text-center text-white leading-5 my-4">
       “Dan diantara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan

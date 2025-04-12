@@ -4,7 +4,7 @@ import Ayat from "@components/Ayat.astro";
 import Countdown from "@components/Countdown.astro";
 import Hero from "@components/Hero.astro";
 import Mempelai from "@components/Mempelai.astro";
-import WeddingGift from "@components/WeddingGift";
+import WeddingGift from "@components/WeddingGift.astro";
 import Layout from "@layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -51,12 +51,25 @@ import Layout from "@layouts/Layout.astro";
   </Mempelai>
   <Countdown />
   <Acara>
-    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
+    <div
+      class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:block hidden"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
         <path
           fill="currentColor"
           fill-opacity="1"
           d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+        ></path>
+      </svg>
+    </div>
+    <div
+      class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:hidden block"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720">
+        <path
+          fill="currentColor"
+          fill-opacity="1"
+          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 720 L 1319.99 720 C 1199.99 720 960 720 720 720 C 480 720 240 720 120 720 L 0.005 720 L 0.005 56 Z"
         ></path>
       </svg>
     </div>
@@ -73,5 +86,5 @@ import Layout from "@layouts/Layout.astro";
       </svg>
     </div>
   </Acara>
-  <WeddingGift client:load />
+  <WeddingGift />
 </Layout>

@@ -1,7 +1,6 @@
-import DualHeading from "@components/DualHeading.astro";
 import { useState, useEffect } from "react";
 
-const WeddingGift = () => {
+const WeddingGiftButton = () => {
   const [showGiftModal, setShowGiftModal] = useState(false);
   const [showCashlessModal, setShowCashlessModal] = useState(false);
   const [copyMessage, setCopyMessage] = useState("");
@@ -69,50 +68,20 @@ const WeddingGift = () => {
   }, []);
 
   return (
-    <section className="bg-blueish-gray py-4 relative">
-      <div className="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
-        <img
-          src="/src/assets/dekorasi/ornamen-5.png"
-          alt="ornamen blue flower"
-        />
-      </div>
-      <div className="mx-auto sm:px-16 px-4 sm:w-8/12 w-full">
-        <div className="container">
-          <div className="relative">
-            <h2 className="flex flex-row pb-0 justify-center text-center text-[calc(3rem+1.2vw)] items-center relative">
-              <span className="absolute z-10 w-full text-center text-black/5 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold font-playfair-display">
-                GIFT
-              </span>
-              <span className="relative z-10 overflow-hidden inline-block font-bold leading-[1.6em] m-0 font-playfair-display">
-                <span className="text-[50%] py-0 px-[3px]">Wedding</span>
-              </span>
-              <span className="relative z-10 overflow-hidden inline-block text-[70%] leading-[1.6em] mt-0 -mb-10 -ml-12 font-tangerine">
-                <span className="block pl-5 pt-5 pb-0 text-shadow-sm">
-                  Gift
-                </span>
-              </span>
-            </h2>
-          </div>
-        </div>
-        <p className="text-center sm:text-base text-sm py-4">
-          Doa restu anda merupakan karunia yang sangat berarti bagi kami. Jika
-          memberi adalah ungkapan tanda kasih, anda dapat memberi kado kepada
-          kami.
-        </p>
-        <div className="mx-auto flex justify-evenly max-w-md">
-          <button
-            onClick={openGiftModal}
-            className="bg-white px-3 py-1.5 rounded hover:cursor-pointer hover:scale-105 transition-all duration-200"
-          >
-            Kirim Hadiah
-          </button>
-          <button
-            onClick={openCashlessModal}
-            className="bg-white px-3 py-1.5 rounded hover:cursor-pointer hover:scale-105 transition-all duration-200"
-          >
-            Cashless
-          </button>
-        </div>
+    <>
+      <div className="mx-auto flex justify-evenly max-w-md">
+        <button
+          onClick={openGiftModal}
+          className="bg-white px-3 py-1.5 rounded hover:cursor-pointer hover:scale-105 transition-all duration-200"
+        >
+          Kirim Hadiah
+        </button>
+        <button
+          onClick={openCashlessModal}
+          className="bg-white px-3 py-1.5 rounded hover:cursor-pointer hover:scale-105 transition-all duration-200"
+        >
+          Cashless
+        </button>
       </div>
 
       {/* Modal Kirim Hadiah */}
@@ -244,8 +213,8 @@ const WeddingGift = () => {
           </div>
         </div>
       )}
-    </section>
+    </>
   );
 };
 
-export default WeddingGift;
+export default WeddingGiftButton;
