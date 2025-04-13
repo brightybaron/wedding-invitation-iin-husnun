@@ -1,0 +1,227 @@
+---
+import { Image } from "astro:assets";
+
+import bgModal from "@assets/dekorasi/bg-main-3.jpg";
+
+const namaTamu = Astro.url.searchParams.get("nama");
+const gelarTamu = Astro.url.searchParams.get("to");
+---
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="circle-loader">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+</div>
+
+<section class="fixed h-dvh w-full z-[1000]" id="modalInvitation">
+  <div
+    class="carousel-container absolute inset-0 w-full h-screen overflow-hidden"
+  >
+    <div class="absolute inset-0 w-full h-screen">
+      <Image
+        src={bgModal}
+        alt="bg-modal"
+        class="h-full w-full object-cover"
+        loading="eager"
+        decoding="sync"
+      />
+      <div class="absolute inset-0 bg-black/5"></div>
+    </div>
+  </div>
+
+  <div
+    class="absolute z-10 transform -translate-x-1/2 left-1/2 bottom-10 w-11/12 text-gray-800"
+  >
+    <div
+      class="rounded text-center py-4 bg-white/80 backdrop-blur-sm shadow-lg"
+    >
+      <div class="space-y-1">
+        <p>Kepada Yth.</p>
+        <p class="font-medium text-lg">
+          {gelarTamu || "Bapak/Ibu/Saudara/i"}
+        </p>
+        <p class="font-semibold text-xl">{namaTamu || "Nama Tamu"}</p>
+      </div>
+      <div class="mt-4">
+        <p>You are invited to</p>
+        <p>Our Wedding Celebration</p>
+      </div>
+      <div class="grid grid-cols-1 gap-1 mt-4 font-playfair-display">
+        <h3 class="text-4xl font-bold">Iin</h3>
+        <p class="text-3xl content-center">&</p>
+        <h3 class="text-4xl font-bold">Husnun</h3>
+      </div>
+      <button
+        class="w-3/4 mt-8 py-2 bg-blueish-gray text-white font-semibold border border-blueish-gray hover:cursor-pointer hover:bg-white hover:text-blueish-gray rounded-md transition-colors duration-300"
+        id="openButton"
+      >
+        Buka Undangan
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="circle-transition" id="circleTransition"></div>
+
+<script>
+  // Wait for everything to load
+  window.addEventListener("load", function () {
+    const openButton = document.getElementById("openButton");
+    const modal = document.getElementById("modalInvitation");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const circleTransition = document.getElementById("circleTransition");
+
+    // Lock scrolling when modal is shown
+    document.body.style.overflow = "hidden";
+
+    // Hide loading overlay after a short delay
+    setTimeout(() => {
+      if (loadingOverlay) {
+        loadingOverlay.classList.add("fade-out");
+        setTimeout(() => {
+          loadingOverlay.style.display = "none";
+        }, 500);
+      }
+    }, 1500);
+
+    if (modal) {
+      // Reset any previous state first
+      modal.classList.remove("slide-up");
+      modal.classList.add("slide-down");
+    }
+
+    if (openButton && modal && circleTransition) {
+      openButton.addEventListener("click", () => {
+        // Dispatch event to trigger audio play
+        document.dispatchEvent(new CustomEvent("modalOpened"));
+
+        // Start circle transition
+        circleTransition.classList.add("active");
+
+        // After circle animation completes, slide the modal up
+        setTimeout(() => {
+          modal.classList.remove("slide-down");
+          modal.classList.add("slide-up");
+
+          // Then hide the element after transition completes
+          setTimeout(() => {
+            modal.classList.add("hidden");
+            // Re-enable scrolling once modal is hidden
+            document.body.style.overflow = "auto";
+
+            // Complete circle transition
+            circleTransition.classList.add("complete");
+
+            // Dispatch a custom event to notify index page that modal is closed
+            document.dispatchEvent(new CustomEvent("modalClosed"));
+          }, 700);
+        }, 500);
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Loading overlay */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 0.5s ease;
+  }
+
+  .loading-overlay.fade-out {
+    opacity: 0;
+  }
+
+  /* Circle loader animation */
+  .circle-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .circle {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    background-color: var(--blueish-gray, #5c7b95);
+    border-radius: 50%;
+    animation: bounce 1s infinite ease-in-out;
+  }
+
+  .circle:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .circle:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .circle:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Modal animation */
+  #modalInvitation {
+    transform: translateY(-100%);
+    transition: transform 0.7s ease-in-out;
+  }
+
+  .slide-down {
+    transform: translateY(0) !important;
+  }
+
+  .slide-up {
+    transform: translateY(-100%) !important;
+  }
+
+  /* Circle transition animation */
+  .circle-transition {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100px;
+    height: 100px;
+    background-color: var(--blueish-gray, #5c7b95);
+    border-radius: 50%;
+    z-index: 9000;
+    opacity: 0;
+    transition:
+      transform 1.2s cubic-bezier(0.86, 0, 0.07, 1),
+      opacity 0.3s ease;
+  }
+
+  .circle-transition.active {
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 1;
+  }
+
+  .circle-transition.complete {
+    transform: translate(-50%, -50%) scale(20);
+    opacity: 0;
+    transition:
+      transform 1.5s cubic-bezier(0.86, 0, 0.07, 1),
+      opacity 1.5s ease 0.7s;
+  }
+</style>

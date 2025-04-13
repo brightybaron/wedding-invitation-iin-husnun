@@ -4,149 +4,177 @@ import Ayat from "@components/Ayat.astro";
 import Countdown from "@components/Countdown.astro";
 import Hero from "@components/Hero.astro";
 import Mempelai from "@components/Mempelai.astro";
+import Modal from "@components/Modal.astro";
 import Rsvp from "@components/Rsvp.astro";
 import Sound from "@components/Sound";
 import WeddingWish from "@components/WeddingWish.astro";
 import Layout from "@layouts/Layout.astro";
 ---
 
+<Modal />
+
 <Layout>
-  <Hero>
-    <div
-      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-  </Hero>
+  <div
+    id="mainContent"
+    class="hidden opacity-0 transition-opacity duration-1000"
+  >
+    <Hero>
+      <div
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+    </Hero>
 
-  <Ayat />
+    <Ayat />
 
-  <Mempelai>
-    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
+    <Mempelai>
+      <div
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
 
-    <div
-      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-  </Mempelai>
+      <div
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+    </Mempelai>
 
-  <Countdown />
+    <Countdown />
 
-  <Acara>
-    <div
-      class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:block hidden"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-    <div
-      class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:hidden block"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 720 L 1319.99 720 C 1199.99 720 960 720 720 720 C 480 720 240 720 120 720 L 0.005 720 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
+    <Acara>
+      <div
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:block hidden"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+      <div
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:hidden block"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 720 L 1319.99 720 C 1199.99 720 960 720 720 720 C 480 720 240 720 120 720 L 0.005 720 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
 
-    <div
-      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-  </Acara>
+      <div
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+    </Acara>
 
-  <Rsvp>
-    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
+    <Rsvp>
+      <div
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
 
-    <div
-      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-  </Rsvp>
+      <div
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+    </Rsvp>
 
-  <WeddingWish>
-    <div class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
+    <WeddingWish>
+      <div
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
 
-    <div
-      class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
-        <path
-          fill="currentColor"
-          fill-opacity="1"
-          d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
-        ></path>
-      </svg>
-    </div>
-  </WeddingWish>
+      <div
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+          <path
+            fill="currentColor"
+            fill-opacity="1"
+            d="M 0.005 56 L 120 66.7 C 240 77 480 99 720 82.7 C 960 67 1199.99 53 1319.99 26.7 L 1439.99 0 L 1439.99 120 L 1319.99 120 C 1199.99 120 960 120 720 120 C 480 120 240 120 120 120 L 0.005 120 L 0.005 56 Z"
+          ></path>
+        </svg>
+      </div>
+    </WeddingWish>
 
-  <section class="w-full py-8 bg-blueish-gray border-b-4">
-    <div class="mx-auto max-w-3xl text-white">
-      <p class="text-center font-semibold">made by</p>
-      <p class="text-center text-xl font-bold font-playfair-display">
-        brightybaron
-      </p>
-      <p class="text-center">&copy; 2025</p>
-    </div>
-  </section>
-
-  <Sound client:load />
+    <section class="w-full py-8 bg-blueish-gray border-b-4">
+      <div class="mx-auto max-w-3xl text-white">
+        <p class="text-center font-semibold">made by</p>
+        <p class="text-center text-xl font-bold font-playfair-display">
+          brightybaron
+        </p>
+        <p class="text-center">&copy; 2025</p>
+      </div>
+    </section>
+    <Sound client:load />
+  </div>
 </Layout>
+
+<script>
+  // Listen for a custom event from the Modal component
+  document.addEventListener("modalClosed", function () {
+    const mainContent = document.getElementById("mainContent");
+    if (mainContent) {
+      mainContent.classList.remove("hidden");
+
+      // Add a small delay to trigger the fade-in effect after the element is shown
+      setTimeout(() => {
+        mainContent.classList.add("opacity-100");
+      }, 100);
+    }
+  });
+</script>

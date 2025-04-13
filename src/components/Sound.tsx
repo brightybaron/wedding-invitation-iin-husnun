@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IconDisc, IconPause } from "@components/Icon";
 import audioFile from "@assets/audio/Your Love - Yung Logos.mp3";
+
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -22,6 +23,26 @@ export default function AudioPlayer() {
     if (audioRef.current) {
       audioRef.current.volume = 0.2;
     }
+
+    // Listen for the modalOpened event
+    const handleModalOpened = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.2;
+        audioRef.current.play().catch((error) => {
+          console.log("Audio play was prevented:", error);
+          // Modern browsers require user interaction before playing audio
+        });
+        setIsPlaying(true);
+      }
+    };
+
+    // Add event listener for the custom event
+    document.addEventListener("modalOpened", handleModalOpened);
+
+    // Clean up the event listener when component unmounts
+    return () => {
+      document.removeEventListener("modalOpened", handleModalOpened);
+    };
   }, []);
 
   return (
@@ -32,7 +53,7 @@ export default function AudioPlayer() {
 
       <div
         onClick={togglePlay}
-        className={`fixed bottom-10 left-6 flex justify-center items-center cursor-pointer text-gray-600 mix-blend-difference w-16 h-16 text-base ${
+        className={`fixed bottom-10 left-6 flex justify-center items-center cursor-pointer text-gray-600 mix-blend-difference w-16 h-16 text-base z-[9999] ${
           isPlaying ? "animate-spin" : ""
         }`}
         style={{
