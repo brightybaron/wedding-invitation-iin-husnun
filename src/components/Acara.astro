@@ -1,9 +1,30 @@
 ---
-import { dateFormatter } from "@lib/utils";
 import DualHeading from "@components/DualHeading.astro";
 import ornament5 from "@assets/dekorasi/ornamen-5.png";
 import ornamentMiddle from "@assets/dekorasi/ornament-middle.png";
 import { Image } from "astro:assets";
+import {
+  dateNumberFormatter,
+  dayDateFormatter,
+  monthDateFormatter,
+  yearDateFormatter,
+} from "@lib/utils";
+
+const akad = {
+  tanggal: new Date("June 13, 2025"),
+  jam: "08.00",
+  tempat: "Kediaman mempelai wanita",
+  alamat: "Jl. Pasir Raya No.17D PPI, Manyar, Gresik",
+  linkmap: "https://maps.app.goo.gl/nZyb3vE2AaqLyT3W9",
+};
+
+const respsi = {
+  tanggal: new Date("June 14, 2025"),
+  jam: "08.00",
+  tempat: "Wisma Djendral Achmad Yani - Semen Gresik",
+  alamat: "Jl. Veteran, Kb. Dalem, Gresik",
+  linkmap: "https://maps.app.goo.gl/ckM7XtkUASGqyYVt7",
+};
 ---
 
 <section class="relative overflow-hidden pb-24">
@@ -29,28 +50,38 @@ import { Image } from "astro:assets";
         <DualHeading word1="Akad" word2="Nikah" wordBg="AKAD" />
         <div class="grid grid-cols-3">
           <div class="col-span-1 flex items-center justify-center px-2">
-            <p class="text-xl font-semibold">Jumat</p>
+            <p class="text-xl font-semibold">
+              {dayDateFormatter(akad.tanggal)}
+            </p>
           </div>
           <div class="col-span-1 border-x-2 border-blue-jeans">
             <div class="flex flex-col items-center justify-center">
-              <p class="text-3xl font-bold">13</p>
-              <p class="text-xl font-semibold">Juni</p>
+              <p class="text-3xl font-bold">
+                {dateNumberFormatter(akad.tanggal)}
+              </p>
+              <p class="text-xl font-semibold">
+                {monthDateFormatter(akad.tanggal)}
+              </p>
             </div>
           </div>
           <div class="col-span-1 flex items-center justify-center px-2">
-            <p class="text-xl font-semibold">2025</p>
+            <p class="text-xl font-semibold">
+              {yearDateFormatter(akad.tanggal)}
+            </p>
           </div>
         </div>
         <div class="mt-2 space-y-1">
-          <p class="font-bold">08.00 WIB</p>
+          <p class="font-bold">{akad.jam} WIB</p>
           <p class="text-sm font-medium">Tempat acara :</p>
-          <p class="font-semibold">Kediaman mempelai wanita</p>
-          <p>Jl. Pasir Raya No.17D PPI, Manyar, Gresik</p>
-          <button
+          <p class="font-semibold">{akad.tempat}</p>
+          <p>{akad.alamat}</p>
+          <a
+            href={akad.linkmap}
+            target="_blank"
             class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
           >
-            <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
-          </button>
+            Lihat Lokasi
+          </a>
         </div>
       </div>
 
@@ -64,28 +95,38 @@ import { Image } from "astro:assets";
         <DualHeading word1="Resepsi" word2="Pernikahan" wordBg="RESEPSI" />
         <div class="grid grid-cols-3">
           <div class="col-span-1 flex items-center justify-center px-2">
-            <p class="text-xl font-semibold">Sabtu</p>
+            <p class="text-xl font-semibold">
+              {dayDateFormatter(respsi.tanggal)}
+            </p>
           </div>
           <div class="col-span-1 border-x-2 border-blue-jeans">
             <div class="flex flex-col items-center justify-center">
-              <p class="text-3xl font-bold">14</p>
-              <p class="text-xl font-semibold">Juni</p>
+              <p class="text-3xl font-bold">
+                {dateNumberFormatter(respsi.tanggal)}
+              </p>
+              <p class="text-xl font-semibold">
+                {monthDateFormatter(respsi.tanggal)}
+              </p>
             </div>
           </div>
           <div class="col-span-1 flex items-center justify-center px-2">
-            <p class="text-xl font-semibold">2025</p>
+            <p class="text-xl font-semibold">
+              {yearDateFormatter(respsi.tanggal)}
+            </p>
           </div>
         </div>
         <div class="mt-2 space-y-1">
-          <p class="font-bold">19.00 WIB</p>
+          <p class="font-bold">{respsi.jam} WIB</p>
           <p class="text-sm font-medium">Tempat acara :</p>
-          <p class="font-semibold">WIsma Djendral Achmad Yani - Semen Gresik</p>
-          <p>Jl. Veteran No.61 Gresik</p>
-          <button
+          <p class="font-semibold">{respsi.tempat}</p>
+          <p>{respsi.alamat}</p>
+          <a
+            href={respsi.linkmap}
+            target="_blank"
             class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
           >
-            <i class="bi bi-geo-alt-fill"></i> Lihat Lokasi
-          </button>
+            Lihat Lokasi
+          </a>
         </div>
       </div>
     </div>

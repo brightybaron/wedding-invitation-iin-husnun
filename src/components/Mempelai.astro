@@ -3,6 +3,16 @@ import { Image } from "astro:assets";
 import ornament1 from "@assets/dekorasi/ornamen-1.png";
 import ornament5 from "@assets/dekorasi/ornamen-5.png";
 import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
+
+const bride = {
+  name: { short: "Iin", long: "Nur Sukma Aini Rahmawati" },
+  parents: { father: "Hariyanto", mother: "Hartianah" },
+};
+
+const groom = {
+  name: { short: "Husnun", long: "Husnun Nashir" },
+  parents: { father: "John Doe (Alm.)", mother: "" },
+};
 ---
 
 <section class="relative h-full w-full overflow-hidden py-32">
@@ -28,7 +38,7 @@ import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
       <Image src={ornament5} alt="ornamen blue flower" />
     </div>
     <div class="px-4 text-center lg:w-auto sm:w-1/2 mb-8 space-y-4 mt-4">
-      <p class="text-md md:text-lg font-bold text-blue-jeans">
+      <p class="text-lg md:text-xl font-bold text-blue-jeans">
         Assalamu'alaikum Wr. Wb.
       </p>
       <p class="sm:text-base text-sm max-w-md">
@@ -39,29 +49,29 @@ import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
     <div class="grid grid-cols-1 lg:grid-cols-3 mt-6 text-center z-30 gap-y-6">
       <div>
         <h3 class="text-7xl font-bold font-monsieur-la-doulaise text-amber-500">
-          Iin
+          {bride.name.short}
         </h3>
         <h3 class="text-2xl mt-2 font-semibold text-cyan-900 mb-2">
-          Nur Sukma Aini Rahmawati
+          {bride.name.long}
         </h3>
         <p class="text-base">Putri dari</p>
         <div class="font-semibold tracking-wide">
-          <p>Bapak Hariyanto</p>
-          <p>Ibu Hartianah</p>
+          <p>Bapak {bride.parents.father}</p>
+          <p>Ibu {bride.parents.mother}</p>
         </div>
       </div>
       <p class="text-8xl content-cente font-tangerine font-bold">&</p>
       <div>
         <h3 class="text-7xl font-bold font-monsieur-la-doulaise text-amber-500">
-          Husnun
+          {groom.name.short}
         </h3>
         <h3 class="text-2xl mt-2 font-semibold text-cyan-900 mb-2">
-          Husnun Nashir
+          {groom.name.long}
         </h3>
         <p class="text-base">Putra dari</p>
         <div class="font-semibold tracking-wide">
-          <p>Bapak John Doe (Alm.)</p>
-          <p>Ibu</p>
+          <p>Bapak {groom.parents.father}</p>
+          <p>Ibu {groom.parents.mother}</p>
         </div>
       </div>
     </div>

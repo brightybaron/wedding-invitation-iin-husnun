@@ -74,7 +74,7 @@ const WeddingGiftButton = () => {
           onClick={openGiftModal}
           className="bg-white px-3 py-1.5 rounded hover:cursor-pointer hover:scale-105 transition-all duration-200"
         >
-          Kirim Hadiah
+          Kirim Kado
         </button>
         <button
           onClick={openCashlessModal}
@@ -102,7 +102,7 @@ const WeddingGiftButton = () => {
           >
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-semibold font-playfair-display">
-                Kirim Hadiah
+                Kirim Kado
               </h3>
               <button
                 onClick={closeModals}
@@ -113,7 +113,7 @@ const WeddingGiftButton = () => {
             </div>
             <div className="mb-4">
               <p className="mb-4">
-                Anda dapat mengirimkan hadiah ke alamat berikut:
+                Anda dapat mengirimkan kado ke alamat berikut:
               </p>
               <div className="bg-gray-100 p-4 rounded-md">
                 <p className="font-medium">Nama Mempelai</p>

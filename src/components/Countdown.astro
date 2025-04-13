@@ -1,6 +1,8 @@
 ---
 import ornament5 from "@assets/dekorasi/ornamen-5.png";
 import { Image } from "astro:assets";
+
+const { targetDate = "June 14, 2025", targetTime = "08:00" } = Astro.props;
 ---
 
 <section class="bg-blueish-gray py-4">
@@ -9,7 +11,7 @@ import { Image } from "astro:assets";
   </div>
   <div class="container text-white mx-auto sm:px-16 px-4 sm:w-8/12 w-full">
     <p
-      class="text-center sm:text-4xl text-2xl font-semibold mb-4 font-parisienne"
+      class="text-center sm:text-4xl text-3xl font-semibold my-4 font-parisienne"
     >
       Save The Date
     </p>
@@ -34,10 +36,8 @@ import { Image } from "astro:assets";
   </div>
 </section>
 
-<script>
+<script define:vars={{ targetDate, targetTime }}>
   // const { targetDate, targetTime } = Astro.props;
-  const targetDate = "June 14, 2025";
-  const targetTime = "08:00";
 
   // Initialize the countdown values
   let hari = 0;
@@ -47,10 +47,10 @@ import { Image } from "astro:assets";
 
   function startCountdown() {
     const countDownDate = new Date(`${targetDate} ${targetTime}`).getTime();
-    const setHari = document.getElementById("hari") as HTMLElement;
-    const setJam = document.getElementById("jam") as HTMLElement;
-    const setMenit = document.getElementById("menit") as HTMLElement;
-    const setDetik = document.getElementById("detik") as HTMLElement;
+    const setHari = document.getElementById("hari");
+    const setJam = document.getElementById("jam");
+    const setMenit = document.getElementById("menit");
+    const setDetik = document.getElementById("detik");
 
     const updateCountdown = () => {
       const now = new Date().getTime();
