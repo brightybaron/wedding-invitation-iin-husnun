@@ -7,7 +7,7 @@ const namaTamu = Astro.url.searchParams.get("nama");
 const gelarTamu = Astro.url.searchParams.get("to");
 ---
 
-<div class="loading-overlay" id="loadingOverlay">
+<div class="loading-overlay flex" id="loadingOverlay">
   <div class="circle-loader">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -79,7 +79,8 @@ const gelarTamu = Astro.url.searchParams.get("to");
       if (loadingOverlay) {
         loadingOverlay.classList.add("fade-out");
         setTimeout(() => {
-          loadingOverlay.style.display = "none";
+          loadingOverlay.classList.remove("flex");
+          loadingOverlay.classList.add("hidden");
         }, 500);
       }
     }, 1500);
@@ -130,7 +131,6 @@ const gelarTamu = Astro.url.searchParams.get("to");
     width: 100%;
     height: 100%;
     background-color: #f5f5f5;
-    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -203,7 +203,7 @@ const gelarTamu = Astro.url.searchParams.get("to");
     height: 100px;
     background-color: var(--blueish-gray, #5c7b95);
     border-radius: 50%;
-    z-index: 9000;
+    z-index: -1;
     opacity: 0;
     transition:
       transform 1.2s cubic-bezier(0.86, 0, 0.07, 1),
