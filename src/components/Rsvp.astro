@@ -6,6 +6,9 @@ import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
 import DualHeading from "@components/DualHeading.astro";
 
 const namaTamu = Astro.url.searchParams.get("nama");
+
+// This is for server-side form handling if using Astro's API endpoints
+// Otherwise, the client-side script below will handle the form submission
 ---
 
 <section class="relative h-full w-full overflow-hidden py-32">
@@ -41,7 +44,14 @@ const namaTamu = Astro.url.searchParams.get("nama");
         <p class="text-base max-w-md">Terima Kasih</p>
       </div>
     </div>
-    <form class="max-w-sm w-[90%] p-6 rounded-lg">
+
+    <div
+      id="responseRsvp"
+      class="invisible text-center p-2 rounded-md w-full max-w-sm"
+    >
+    </div>
+
+    <form id="rsvpForm" class="max-w-sm w-[90%] p-6 rounded-lg">
       <div class="flex flex-col space-y-1 items-center">
         <label for="name" class="font-semibold">Nama</label>
         <input
@@ -97,6 +107,83 @@ const namaTamu = Astro.url.searchParams.get("nama");
         </button>
       </div>
     </form>
-    <slot />
   </div>
+  <slot />
 </section>
+
+<script>
+  // Client-side form handling
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("rsvpForm") as HTMLFormElement;
+    const responseRsvp = document.getElementById("responseRsvp");
+
+    if (form && responseRsvp) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const nama = formData.get("name") as string;
+        const kehadiran = formData.get("kehadiran") as string;
+
+        if (!nama || !kehadiran) {
+          showMessage("Silakan isi semua form", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch("/api/rsvp", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ nama, kehadiran }),
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            showMessage(
+              "Terima kasih atas konfirmasi kehadiran Anda!",
+              "success"
+            );
+            form.reset();
+          } else {
+            showMessage(result.error || "Gagal mengirim RSVP", "error");
+          }
+        } catch (error) {
+          console.error("Error submitting form:", error);
+          showMessage("Terjadi kesalahan, silakan coba lagi", "error");
+        }
+      });
+    }
+
+    function showMessage(message: string, type: "success" | "error") {
+      if (responseRsvp) {
+        responseRsvp.textContent = message;
+        responseRsvp.classList.remove(
+          "invisible",
+          "bg-green-100",
+          "text-green-800",
+          "bg-red-100",
+          "text-red-800"
+        );
+        responseRsvp.classList.add(
+          ...(type === "success"
+            ? ["bg-green-100", "text-green-800"]
+            : ["bg-red-100", "text-red-800"])
+        );
+
+        // Show the message
+        responseRsvp.classList.remove("invisible");
+
+        // Scroll to message
+        // responseRsvp.scrollIntoView({ behavior: "smooth" });
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+          responseRsvp.classList.add("invisible", "hidden");
+        }, 3000);
+      }
+    }
+  });
+</script>

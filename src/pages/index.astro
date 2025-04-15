@@ -9,6 +9,16 @@ import Rsvp from "@components/Rsvp.astro";
 import Sound from "@components/Sound";
 import WeddingWish from "@components/WeddingWish.astro";
 import Layout from "@layouts/Layout.astro";
+
+const bride = {
+  name: { short: "Iin", long: "Nur Sukma Aini Rahmawati" },
+  parents: { father: "Hariyanto", mother: "Hartianah" },
+};
+
+const groom = {
+  name: { short: "Husnun", long: "Husnun Nashir" },
+  parents: { father: "KH. Mas Fadli (Alm.)", mother: "Hj. " },
+};
 ---
 
 <Modal />
@@ -34,7 +44,7 @@ import Layout from "@layouts/Layout.astro";
 
     <Ayat />
 
-    <Mempelai>
+    <Mempelai bride={bride} groom={groom}>
       <div
         class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
       >
@@ -162,19 +172,19 @@ import Layout from "@layouts/Layout.astro";
     </section>
     <Sound client:load />
   </div>
+
+  <script>
+    // Listen for a custom event from the Modal component
+    document.addEventListener("modalClosed", function () {
+      const mainContent = document.getElementById("mainContent");
+      if (mainContent) {
+        mainContent.classList.remove("hidden");
+
+        // Add a small delay to trigger the fade-in effect after the element is shown
+        setTimeout(() => {
+          mainContent.classList.add("opacity-100");
+        }, 100);
+      }
+    });
+  </script>
 </Layout>
-
-<script>
-  // Listen for a custom event from the Modal component
-  document.addEventListener("modalClosed", function () {
-    const mainContent = document.getElementById("mainContent");
-    if (mainContent) {
-      mainContent.classList.remove("hidden");
-
-      // Add a small delay to trigger the fade-in effect after the element is shown
-      setTimeout(() => {
-        mainContent.classList.add("opacity-100");
-      }, 100);
-    }
-  });
-</script>

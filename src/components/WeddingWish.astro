@@ -3,9 +3,14 @@ import { Image } from "astro:assets";
 import ornament1 from "@assets/dekorasi/ornamen-1.png";
 import ornament5 from "@assets/dekorasi/ornamen-5.png";
 import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
-import DualHeading from "./DualHeading.astro";
+import DualHeading from "@components/DualHeading.astro";
+import { getAllUcapan } from "@lib/data";
 
 const namaTamu = Astro.url.searchParams.get("nama");
+
+// Get existing ucapan/wishes for display
+const ucapanResult = await getAllUcapan();
+const ucapanList = ucapanResult.success ? ucapanResult.data : [];
 ---
 
 <section class="relative h-full w-full overflow-hidden py-32">
@@ -35,18 +40,28 @@ const namaTamu = Astro.url.searchParams.get("nama");
           Kirimkan doa restu dan ucapan anda kepada kedua mempelai
         </p>
 
+        <div
+          id="responseWish"
+          class="invisible text-center p-2 rounded-md max-w-sm mx-auto text-sm"
+        >
+        </div>
+
         <form
-          action=""
+          id="ucapanForm"
           class="flex flex-col max-w-sm w-[90%] mx-auto mt-8 space-y-4"
         >
           <input
             type="text"
+            name="nama"
+            id="namaInput"
             class="mt-1 w-full py-2 px-3 text-sm border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
             placeholder="Nama"
             value={namaTamu || ""}
             required
           />
           <textarea
+            name="ucapan"
+            id="ucapanInput"
             class="mt-1 w-full py-2 px-3 text-sm border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
             placeholder="Ucapan/doa"
             rows="3"
@@ -63,35 +78,28 @@ const namaTamu = Astro.url.searchParams.get("nama");
 
     <slot />
   </div>
-  <p class="text-sm text-blue-jeans font-semibold text-center mb-2">
-    3 Comments
+
+  <p
+    id="commentCount"
+    class="text-sm text-blue-jeans font-semibold text-center mb-2"
+  >
+    {ucapanList?.length} Comments
   </p>
   <div class="px-4">
     <div
       class="mx-auto max-w-lg max-h-96 space-y-3 border border-gray-200 rounded-md py-4 px-2 overflow-scroll"
+      id="ucapanContainer"
     >
-      <div class="mx-auto space-y-1">
-        <p class="text-sm text-blue-jeans font-semibold">Ben Sulayem</p>
-        <p class="text-sm indent-2">Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div class="mx-auto space-y-1">
-        <p class="text-sm text-blue-jeans font-semibold">Ben Sulayem</p>
-        <p class="text-sm indent-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro in
-          quisquam adipisci ut, sunt laudantium, alias corporis repellat
-          inventore voluptates et neque debitis animi culpa non voluptatibus
-          nobis eum aspernatur.
-        </p>
-      </div>
-      <div class="mx-auto space-y-1">
-        <p class="text-sm text-blue-jeans font-semibold">Ben Sulayem</p>
-        <p class="text-sm indent-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro in
-          quisquam adipisci ut, sunt laudantium, alias corporis repellat
-          inventore voluptates et neque debitis animi culpa non voluptatibus
-          nobis eum aspernatur.
-        </p>
-      </div>
+      {
+        ucapanList?.map((item) => (
+          <div class="mx-auto space-y-1">
+            <p class="text-sm text-blue-jeans font-semibold">
+              {item.tamu.nama}
+            </p>
+            <p class="text-sm indent-2">{item.isiUcapan}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 
@@ -108,3 +116,119 @@ const namaTamu = Astro.url.searchParams.get("nama");
     </p>
   </div>
 </section>
+
+<script>
+  // Client-side form handling
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("ucapanForm") as HTMLFormElement;
+    const responseWish = document.getElementById("responseWish");
+    const ucapanContainer = document.getElementById("ucapanContainer");
+    const commentCount = document.getElementById("commentCount");
+    const namaInput = document.getElementById("namaInput") as HTMLInputElement;
+    const ucapanInput = document.getElementById(
+      "ucapanInput"
+    ) as HTMLTextAreaElement;
+
+    if (form && responseWish && ucapanContainer) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const nama = namaInput.value.trim();
+        const isiUcapan = ucapanInput.value.trim();
+
+        if (!nama || !isiUcapan) {
+          showMessage("Silakan isi semua form", "error");
+          return;
+        }
+
+        try {
+          const response = await fetch("/api/ucapan", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ nama, isiUcapan }),
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            showMessage("Terima kasih telah mengirimkan ucapan!", "success");
+
+            // Create and add the new ucapan to UI immediately
+            addNewUcapanToUI(nama, isiUcapan);
+
+            // Reset form
+            form.reset();
+          } else {
+            showMessage(result.error || "Gagal mengirim ucapan", "error");
+            // Optional: You could remove the newly added comment if the API call fails
+          }
+        } catch (error) {
+          console.error("Error submitting form:", error);
+          showMessage("Terjadi kesalahan, silakan coba lagi", "error");
+          // Optional: You could remove the newly added comment if the API call fails
+        }
+      });
+    }
+
+    function addNewUcapanToUI(nama: string, isiUcapan: string) {
+      if (ucapanContainer) {
+        // Create new ucapan element
+        const newUcapanDiv = document.createElement("div");
+        newUcapanDiv.className = "mx-auto space-y-1";
+        newUcapanDiv.innerHTML = `
+          <p class="text-sm text-blue-jeans font-semibold">${nama}</p>
+          <p class="text-sm indent-2">${isiUcapan}</p>
+        `;
+
+        // Add to top of list with a little animation
+        newUcapanDiv.style.opacity = "0";
+        newUcapanDiv.style.transition = "opacity 0.5s ease-in";
+
+        // Add to the top of the container
+        ucapanContainer.prepend(newUcapanDiv);
+
+        // Scroll to the top of the container to show the new comment
+        // ucapanContainer.scrollTop = 0;
+
+        // Trigger animation
+        setTimeout(() => {
+          newUcapanDiv.style.opacity = "1";
+        }, 10);
+
+        // Update comment count
+        if (commentCount) {
+          const currentCount = parseInt(commentCount.textContent || "0");
+          commentCount.textContent = `${currentCount + 1} Comments`;
+        }
+      }
+    }
+
+    function showMessage(message: string, type: "success" | "error") {
+      if (responseWish) {
+        responseWish.textContent = message;
+        responseWish.classList.remove(
+          "invisible",
+          "bg-green-100",
+          "text-green-800",
+          "bg-red-100",
+          "text-red-800"
+        );
+        responseWish.classList.add(
+          ...(type === "success"
+            ? ["bg-green-100", "text-green-800"]
+            : ["bg-red-100", "text-red-800"])
+        );
+
+        // Show the message
+        responseWish.classList.remove("invisible");
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+          responseWish.classList.add("invisible");
+        }, 5000);
+      }
+    }
+  });
+</script>
