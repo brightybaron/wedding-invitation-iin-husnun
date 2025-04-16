@@ -1,20 +1,29 @@
 ---
 import { Image } from "astro:assets";
 import ornament1 from "@assets/dekorasi/ornamen-1.png";
-import ornament5 from "@assets/dekorasi/ornamen-5.png";
-import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
+import ornament5 from "@assets/dekorasi/ornamen-7.webp";
+import ornamentBg from "@assets/dekorasi/bg-main-3.jpg";
 import DualHeading from "@components/DualHeading.astro";
 import { getAllUcapan } from "@lib/data";
 
-const namaTamu = Astro.url.searchParams.get("nama");
+const { namaTamu } = Astro.props;
 
 // Get existing ucapan/wishes for display
 const ucapanResult = await getAllUcapan();
 const ucapanList = ucapanResult.success ? ucapanResult.data : [];
 ---
 
-<section class="relative h-full w-full overflow-hidden py-32">
-  <div class="absolute -top-16 -left-6 lg:w-1/3 md:w-1/2 w-11/12">
+<section class="relative h-full w-full overflow-hidden py-12">
+  <div class="absolute inset-0 w-full h-full">
+    <Image
+      loading={"eager"}
+      src={ornamentBg}
+      alt="ornament top"
+      class="h-full w-full object-cover object-center"
+    />
+  </div>
+
+  <!-- <div class="absolute -top-16 -left-6 lg:w-1/3 md:w-1/2 w-11/12">
     <Image src={ornamentBg} alt="ornament top left" class="-rotate-20" />
   </div>
   <div class="absolute -top-4 -right-2 lg:w-1/6 md:w-1/4 w-1/3">
@@ -27,16 +36,16 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
   </div>
   <div class="absolute bottom-4 lg:bottom-16 -left-6 lg:w-1/6 md:w-1/4 w-1/3">
     <Image src={ornament5} alt="ornament b0ttom left" class="rotate-45" />
-  </div>
+  </div> -->
 
-  <div class="max-w-6xl mx-auto h-full flex flex-col items-center pb-8">
-    <div class="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
+  <div class="relative max-w-6xl mx-auto h-full flex flex-col items-center">
+    <div class="mx-auto md:w-1/6 w-1/3">
       <Image src={ornament5} alt="ornamen blue flower" />
     </div>
     <DualHeading word1="Wedding" word2="Wish" wordBg="WISH" />
     <div class="px-4 lg:w-auto sm:w-1/2 mb-4 space-y-4 mt-4">
       <div class="space-y-4">
-        <p class="text-base max-w-md text-center">
+        <p class="text-base mx-auto max-w-md text-center">
           Kirimkan doa restu dan ucapan anda kepada kedua mempelai
         </p>
 
@@ -54,7 +63,7 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
             type="text"
             name="nama"
             id="namaInput"
-            class="mt-1 w-full py-2 px-3 text-sm border bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+            class="mt-1 w-full py-2 px-3 text-sm border-2 bg-gray-100 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
             placeholder="Nama"
             value={namaTamu || ""}
             required
@@ -68,53 +77,76 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
             required></textarea>
           <button
             type="submit"
-            class="bg-blueish-gray hover:cursor-pointer text-white font-semibold px-3 py-1.5 rounded-md w-fit"
+            id="submitBtn"
+            class="bg-coklat-petro hover:cursor-pointer text-white font-semibold px-3 py-1.5 rounded-md w-fit"
           >
-            Kirim
+            <span>Kirim</span>
+            <span id="loadingSpinner" class="hidden">
+              <svg
+                class="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            </span>
           </button>
         </form>
+
+        <p
+          id="commentCount"
+          class="text-sm text-coklat-petro font-semibold text-center mb-2"
+        >
+          {ucapanList?.length} Comments
+        </p>
+        <div class="px-4">
+          <div
+            class="mx-auto max-w-lg max-h-96 space-y-3 border border-gray-200 rounded-md py-4 px-2 overflow-scroll"
+            id="ucapanContainer"
+          >
+            {
+              ucapanList?.map((item) => (
+                <div class="mx-auto space-y-1">
+                  <p class="text-blue-jeans font-semibold">{item.tamu.nama}</p>
+                  <p class="indent-2">{item.isiUcapan}</p>
+                </div>
+              ))
+            }
+          </div>
+          <div class="mt-24 px-4">
+            <p class="text-center sm:text-base text-sm font-medium">
+              Menjadi sebuah kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i
+              berkenan hadir dalam hari bahagia kami.
+            </p>
+            <p
+              class="text-center font-medium text-xl font-playfair-display mt-8"
+            >
+              Terima Kasih
+            </p>
+            <p
+              class="text-center font-medium text-3xl font-playfair-display mt-2"
+            >
+              Iin & Husnun
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-
-    <slot />
   </div>
 
-  <p
-    id="commentCount"
-    class="text-sm text-blue-jeans font-semibold text-center mb-2"
-  >
-    {ucapanList?.length} Comments
-  </p>
-  <div class="px-4">
-    <div
-      class="mx-auto max-w-lg max-h-96 space-y-3 border border-gray-200 rounded-md py-4 px-2 overflow-scroll"
-      id="ucapanContainer"
-    >
-      {
-        ucapanList?.map((item) => (
-          <div class="mx-auto space-y-1">
-            <p class="text-sm text-blue-jeans font-semibold">
-              {item.tamu.nama}
-            </p>
-            <p class="text-sm indent-2">{item.isiUcapan}</p>
-          </div>
-        ))
-      }
-    </div>
-  </div>
-
-  <div class="mt-24 px-4">
-    <p class="text-center sm:text-base text-sm font-medium">
-      Menjadi sebuah kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan
-      hadir dalam hari bahagia kami.
-    </p>
-    <p class="text-center font-medium text-xl font-playfair-display mt-8">
-      Terima Kasih
-    </p>
-    <p class="text-center font-medium text-3xl font-playfair-display mt-2">
-      Iin & Husnun
-    </p>
-  </div>
+  <slot />
 </section>
 
 <script>
@@ -128,10 +160,17 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
     const ucapanInput = document.getElementById(
       "ucapanInput"
     ) as HTMLTextAreaElement;
+    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+    const loadingSpinner = document.getElementById(
+      "loadingSpinner"
+    ) as HTMLElement;
 
     if (form && responseWish && ucapanContainer) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        loadingSpinner.classList.remove("hidden");
+        submitBtn.setAttribute("disabled", "true");
 
         const nama = namaInput.value.trim();
         const isiUcapan = ucapanInput.value.trim();
@@ -153,7 +192,11 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
           const result = await response.json();
 
           if (result.success) {
-            showMessage("Terima kasih telah mengirimkan ucapan!", "success");
+            hideLoadingSpinner();
+            showMessage(
+              "Terima kasih telah mengirimkan doa/ucapan!",
+              "success"
+            );
 
             // Create and add the new ucapan to UI immediately
             addNewUcapanToUI(nama, isiUcapan);
@@ -161,6 +204,7 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
             // Reset form
             form.reset();
           } else {
+            hideLoadingSpinner();
             showMessage(result.error || "Gagal mengirim ucapan", "error");
             // Optional: You could remove the newly added comment if the API call fails
           }
@@ -170,6 +214,13 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
           // Optional: You could remove the newly added comment if the API call fails
         }
       });
+    }
+
+    function hideLoadingSpinner() {
+      if (loadingSpinner && submitBtn) {
+        loadingSpinner.classList.add("hidden");
+        submitBtn.removeAttribute("disabled");
+      }
     }
 
     function addNewUcapanToUI(nama: string, isiUcapan: string) {

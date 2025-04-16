@@ -1,7 +1,8 @@
 ---
 import DualHeading from "@components/DualHeading.astro";
-import ornament5 from "@assets/dekorasi/ornamen-5.png";
+import ornament5 from "@assets/dekorasi/ornamen-7.webp";
 import ornamentMiddle from "@assets/dekorasi/ornament-middle.png";
+import ornamentBg from "@assets/dekorasi/bg-main-3.jpg";
 import { Image } from "astro:assets";
 import {
   dateNumberFormatter,
@@ -10,29 +11,24 @@ import {
   yearDateFormatter,
 } from "@lib/utils";
 
-const akad = {
-  tanggal: new Date("June 13, 2025"),
-  jam: "08.00",
-  tempat: "Kediaman mempelai wanita",
-  alamat: "Jl. Pasir Raya No.17D PPI, Manyar, Gresik",
-  linkmap: "https://maps.app.goo.gl/nZyb3vE2AaqLyT3W9",
-};
-
-const respsi = {
-  tanggal: new Date("June 14, 2025"),
-  jam: "08.00",
-  tempat: "Wisma Djendral Achmad Yani - Semen Gresik",
-  alamat: "Jl. Veteran, Kb. Dalem, Gresik",
-  linkmap: "https://maps.app.goo.gl/ckM7XtkUASGqyYVt7",
-};
+const { akad, respsi } = Astro.props;
 ---
 
 <section class="relative overflow-hidden pb-24">
+  <div class="absolute inset-0 w-full h-full z-[5]">
+    <Image
+      loading={"eager"}
+      src={ornamentBg}
+      alt="ornament top"
+      class="h-full w-full object-cover object-center"
+    />
+  </div>
+
   <div
-    class="lg:max-w-4xl md:max-w-3xl max-w-[90%] mx-auto px-4 md:mt-32 mt-16 border-8 border-double border-spacing-4 border-blue-jeans rounded-full shadow-2xl overflow-hidden relative bg-white"
+    class="lg:max-w-4xl md:max-w-3xl max-w-[90%] mx-auto px-4 md:mt-32 mt-16 border-8 border-double border-spacing-4 border-coklat-petro rounded-full shadow-2xl overflow-hidden relative bg-white z-20"
   >
     <div class="absolute -top-6 left-0 right-0 w-full">
-      <div class="mx-auto w-2/5 md:w-1/5">
+      <div class="mx-auto w-3/5 md:w-1/5">
         <Image src={ornament5} alt="ornament top" class="rotate-180" />
       </div>
     </div>
@@ -54,7 +50,7 @@ const respsi = {
               {dayDateFormatter(akad.tanggal)}
             </p>
           </div>
-          <div class="col-span-1 border-x-2 border-blue-jeans">
+          <div class="col-span-1 border-x-2 border-bg-yellow-800">
             <div class="flex flex-col items-center justify-center">
               <p class="text-3xl font-bold">
                 {dateNumberFormatter(akad.tanggal)}
@@ -75,21 +71,21 @@ const respsi = {
           <p class="text-sm font-medium">Tempat acara :</p>
           <p class="font-semibold">{akad.tempat}</p>
           <p>{akad.alamat}</p>
-          <a
+          <!-- <a
             href={akad.linkmap}
             target="_blank"
-            class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
+            class="bg-coklat-petro px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
           >
             Lihat Lokasi
-          </a>
+          </a> -->
         </div>
       </div>
 
       <div
-        class="hidden sm:block w-1 bg-blue-jeans absolute h-[50%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        class="hidden sm:block w-1 bg-yellow-800 absolute h-[50%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
       </div>
-      <hr class="sm:hidden block w-1/2 mx-auto border-blue-jeans" />
+      <hr class="sm:hidden block w-1/2 mx-auto border-bg-yellow-800" />
 
       <div class="flex flex-col space-y-1">
         <DualHeading word1="Resepsi" word2="Pernikahan" wordBg="RESEPSI" />
@@ -99,7 +95,7 @@ const respsi = {
               {dayDateFormatter(respsi.tanggal)}
             </p>
           </div>
-          <div class="col-span-1 border-x-2 border-blue-jeans">
+          <div class="col-span-1 border-x-2 border-bg-yellow-800">
             <div class="flex flex-col items-center justify-center">
               <p class="text-3xl font-bold">
                 {dateNumberFormatter(respsi.tanggal)}
@@ -120,14 +116,23 @@ const respsi = {
           <p class="text-sm font-medium">Tempat acara :</p>
           <p class="font-semibold">{respsi.tempat}</p>
           <p>{respsi.alamat}</p>
-          <a
+          <!-- <a
             href={respsi.linkmap}
             target="_blank"
-            class="bg-blueish-gray px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
+            class="bg-coklat-petro px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
           >
             Lihat Lokasi
-          </a>
+          </a> -->
         </div>
+      </div>
+      <div>
+        <a
+          href={respsi.linkmap}
+          target="_blank"
+          class="bg-coklat-petro px-4 py-1.5 rounded text-white font-medium w-fit mx-auto"
+        >
+          Lihat Lokasi
+        </a>
       </div>
     </div>
   </div>

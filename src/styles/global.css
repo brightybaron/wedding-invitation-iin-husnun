@@ -11,18 +11,5 @@
   --font-tangerine: "Tangerine", cursive;
   --color-blue-jeans: #2c4564;
   --color-blueish-gray: #5d8094;
-  --animate-slide-down: slideDown 1.5s ease-in-out infinite;
-  @keyframes slideDown {
-    0% {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-  }
+  --color-coklat-petro: #a48d66;
 }

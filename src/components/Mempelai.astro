@@ -1,24 +1,23 @@
 ---
 import { Image } from "astro:assets";
 import ornament1 from "@assets/dekorasi/ornamen-1.png";
-import ornament5 from "@assets/dekorasi/ornamen-5.png";
-import ornamentBg from "@assets/dekorasi/bg-main-2.webp";
+import ornament5 from "@assets/dekorasi/ornamen-gunungan.webp";
+import ornamentBg from "@assets/dekorasi/bg-main-3.jpg";
 
 const { bride, groom } = Astro.props;
-
-// const bride = {
-//   name: { short: "Iin", long: "Nur Sukma Aini Rahmawati" },
-//   parents: { father: "Hariyanto", mother: "Hartianah" },
-// };
-
-// const groom = {
-//   name: { short: "Husnun", long: "Husnun Nashir" },
-//   parents: { father: "KH. Mas Fadli (Alm.)", mother: "Hj. " },
-// };
 ---
 
-<section class="relative h-full w-full overflow-hidden py-32">
-  <div class="absolute -top-16 -left-6 lg:w-1/3 md:w-1/2 w-11/12">
+<section class="relative h-full w-full overflow-hidden py-28">
+  <div class="absolute inset-0 w-full h-full">
+    <Image
+      loading={"eager"}
+      src={ornamentBg}
+      alt="ornament top"
+      class="h-full w-full object-cover object-center"
+    />
+  </div>
+
+  <!-- <div class="absolute -top-16 -left-6 lg:w-1/3 md:w-1/2 w-11/12">
     <Image src={ornamentBg} alt="ornament top" class="-rotate-20" />
   </div>
   <div class="absolute -top-4 -right-2 lg:w-1/6 md:w-1/4 w-1/3">
@@ -31,12 +30,12 @@ const { bride, groom } = Astro.props;
   </div>
   <div class="absolute bottom-4 lg:bottom-16 -left-6 lg:w-1/6 md:w-1/4 w-1/3">
     <Image src={ornament5} alt="ornament b0ttom" class="rotate-45" />
-  </div>
+  </div> -->
 
   <div
-    class="max-w-6xl mx-auto h-full flex flex-col items-center justify-center"
+    class="relative max-w-6xl mx-auto h-full flex flex-col items-center justify-center"
   >
-    <div class="mx-auto lg:w-1/8 md:w-1/6 w-1/4">
+    <div class="mx-auto lg:w-1/12 md:w-1/6 w-1/4">
       <Image src={ornament5} alt="ornamen blue flower" />
     </div>
     <div class="px-4 text-center lg:w-auto sm:w-1/2 mb-8 space-y-4 mt-4">
@@ -50,7 +49,7 @@ const { bride, groom } = Astro.props;
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 mt-6 text-center z-30 gap-y-6">
       <div>
-        <h3 class="text-7xl font-bold font-monsieur-la-doulaise text-amber-500">
+        <h3 class="text-7xl font-bold font-bonheur-royale text-amber-500">
           {bride.name.short}
         </h3>
         <h3 class="text-2xl mt-2 font-semibold text-cyan-900 mb-2">
@@ -64,7 +63,7 @@ const { bride, groom } = Astro.props;
       </div>
       <p class="text-8xl content-cente font-tangerine font-bold">&</p>
       <div>
-        <h3 class="text-7xl font-bold font-monsieur-la-doulaise text-amber-500">
+        <h3 class="text-7xl font-bold font-bonheur-royale text-amber-500">
           {groom.name.short}
         </h3>
         <h3 class="text-2xl mt-2 font-semibold text-cyan-900 mb-2">
@@ -77,6 +76,6 @@ const { bride, groom } = Astro.props;
         </div>
       </div>
     </div>
-    <slot />
   </div>
+  <slot />
 </section>

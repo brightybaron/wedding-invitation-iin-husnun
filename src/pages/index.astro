@@ -10,14 +10,39 @@ import Sound from "@components/Sound";
 import WeddingWish from "@components/WeddingWish.astro";
 import Layout from "@layouts/Layout.astro";
 
-const bride = {
-  name: { short: "Iin", long: "Nur Sukma Aini Rahmawati" },
-  parents: { father: "Hariyanto", mother: "Hartianah" },
+const namaTamu = Astro.url.searchParams.get("nama");
+
+const manten = {
+  bride: {
+    name: { short: "Iin", long: "Nur Sukma Aini Rahmawati" },
+    parents: { father: "Hariyanto", mother: "Hartianah" },
+  },
+  groom: {
+    name: { short: "Husnun", long: "Husnun Nashir" },
+    parents: { father: "KH. Masfadlil (Alm.)", mother: "Hj. Siti Laila " },
+  },
 };
 
-const groom = {
-  name: { short: "Husnun", long: "Husnun Nashir" },
-  parents: { father: "KH. Mas Fadli (Alm.)", mother: "Hj. " },
+const countdown = {
+  targetDate: "June 14, 2025",
+  targetTime: "19:30",
+};
+
+const acara = {
+  akad: {
+    tanggal: new Date("June 13, 2025"),
+    jam: "08.00",
+    tempat: "Kediaman mempelai wanita",
+    alamat: "Jl. Pasir Raya No.17D PPI, Manyar, Gresik",
+    linkmap: "https://maps.app.goo.gl/nZyb3vE2AaqLyT3W9",
+  },
+  respsi: {
+    tanggal: new Date("June 14, 2025"),
+    jam: "19.30",
+    tempat: "Wisma Djendral Ahmad Yani - Semen Gresik",
+    alamat: "Jl. Veteran Gresik",
+    linkmap: "https://maps.app.goo.gl/ckM7XtkUASGqyYVt7",
+  },
 };
 ---
 
@@ -30,7 +55,7 @@ const groom = {
   >
     <Hero>
       <div
-        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -44,9 +69,9 @@ const groom = {
 
     <Ayat />
 
-    <Mempelai bride={bride} groom={groom}>
+    <Mempelai {...manten}>
       <div
-        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -58,7 +83,7 @@ const groom = {
       </div>
 
       <div
-        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -70,11 +95,11 @@ const groom = {
       </div>
     </Mempelai>
 
-    <Countdown />
+    <Countdown {...countdown} />
 
-    <Acara>
+    <Acara {...acara}>
       <div
-        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:block hidden"
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro z-10 sm:block hidden"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -85,7 +110,7 @@ const groom = {
         </svg>
       </div>
       <div
-        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray -z-10 sm:hidden block"
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro z-10 sm:hidden block"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720">
           <path
@@ -97,7 +122,7 @@ const groom = {
       </div>
 
       <div
-        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-coklat-petro z-10"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -109,9 +134,9 @@ const groom = {
       </div>
     </Acara>
 
-    <Rsvp>
+    <Rsvp namaTamu={namaTamu}>
       <div
-        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -123,7 +148,7 @@ const groom = {
       </div>
 
       <div
-        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -135,9 +160,9 @@ const groom = {
       </div>
     </Rsvp>
 
-    <WeddingWish>
+    <WeddingWish namaTamu={namaTamu}>
       <div
-        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-blueish-gray"
+        class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -149,7 +174,7 @@ const groom = {
       </div>
 
       <div
-        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-blueish-gray"
+        class="w-full h-auto absolute -bottom-0.5 rotate-y-180 text-coklat-petro"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
           <path
@@ -161,10 +186,10 @@ const groom = {
       </div>
     </WeddingWish>
 
-    <section class="w-full py-8 bg-blueish-gray border-b-4">
+    <section class="w-full py-8 bg-coklat-petro text-coklat-petro border-b-4">
       <div class="mx-auto max-w-3xl text-white">
         <p class="text-center font-semibold">made by</p>
-        <p class="text-center text-xl font-bold font-playfair-display">
+        <p class="text-center text-lg font-bold font-playfair-display">
           brightybaron
         </p>
         <p class="text-center">&copy; 2025</p>
