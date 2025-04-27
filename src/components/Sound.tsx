@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { IconDisc, IconPause } from "@components/Icon";
-import audioFile from "@assets/audio/Your Love - Yung Logos.mp3";
+import audioFile from "@assets/audio/Calum Scott - You Are The Reason Piano Cover with Strings.mp3";
 
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,7 +11,7 @@ export default function AudioPlayer() {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
-        audioRef.current.volume = 0.2;
+        audioRef.current.volume = 0.4;
         audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
@@ -21,13 +21,13 @@ export default function AudioPlayer() {
   useEffect(() => {
     // Initialize audio element
     if (audioRef.current) {
-      audioRef.current.volume = 0.2;
+      audioRef.current.volume = 0.4;
     }
 
     // Listen for the modalOpened event
     const handleModalOpened = () => {
       if (audioRef.current) {
-        audioRef.current.volume = 0.2;
+        audioRef.current.volume = 0.4;
         audioRef.current.play().catch((error) => {
           console.log("Audio play was prevented:", error);
           // Modern browsers require user interaction before playing audio

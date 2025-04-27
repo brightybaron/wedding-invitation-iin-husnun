@@ -1,19 +1,22 @@
 ---
 import { Image } from "astro:assets";
-import ornament1 from "@assets/dekorasi/ornamen-1.png";
-import ornamentBg from "@assets/dekorasi/bg-main-3.jpg";
+import ornamentl from "@assets/dekorasi/orn-top-left.webp";
+import ornamentr from "@assets/dekorasi/orn-top-right.webp";
+import ornamenbl from "@assets/dekorasi/ornamen-12.webp";
+import ornamenbr from "@assets/dekorasi/ornamen-10.webp";
+import bgHero from "@assets/dekorasi/bg-main-3.jpg";
 import ornamentGunungan from "@assets/dekorasi/ornamen-gunungan.webp";
 ---
 
 <section class="relative h-screen w-full overflow-hidden">
-  <div class="absolute inset-0 w-full h-screen">
+  <!-- <div class="absolute inset-0 w-full h-screen">
     <Image
       loading={"eager"}
-      src={ornamentBg}
-      alt="ornament top"
+      src={bgHero}
+      alt="hero background"
       class="h-full w-full object-cover object-center"
     />
-  </div>
+  </div> -->
 
   <div
     class="absolute top-52 lg:top-32 left-1/2 w-1/4 lg:w-1/12 -translate-x-1/2 -translate-y-1/2"
@@ -26,30 +29,22 @@ import ornamentGunungan from "@assets/dekorasi/ornamen-gunungan.webp";
     />
   </div>
 
-  <!-- <div class="absolute -top-16 -left-6 lg:w-1/3 md:w-1/2 w-11/12">
-    <Image
-      loading={"eager"}
-      src={ornamentBg}
-      alt="ornament top"
-      class="-rotate-20"
-    />
+  <div class="absolute top-0 left-0 lg:w-1/4 md:w-1/2 w-3/4">
+    <Image loading={"eager"} src={ornamentl} alt="ornament top left" />
   </div>
-  <div class="absolute top-0 right-0 lg:w-1/6 md:w-1/4 w-1/3">
-    <Image
-      loading={"eager"}
-      src={ornament1}
-      alt="ornament top"
-      class="rotate-180"
-    />
+
+  <div class="absolute top-0 right-0 lg:w-1/4 md:w-1/2 w-3/4">
+    <Image loading={"eager"} src={ornamentr} alt="ornament top roight" />
   </div>
-  <div class="absolute -bottom-12 -right-4 lg:w-1/2 md:w-1/2 w-11/12">
-    <Image
-      loading={"eager"}
-      src={ornamentBg}
-      alt="ornament bottom"
-      class="rotate-160"
-    />
-  </div> -->
+
+  <div class="absolute lg:bottom-10 bottom-0 left-0 md:w-1/6 w-1/3">
+    <Image loading={"eager"} src={ornamenbl} alt="ornament bottom left" />
+  </div>
+
+  <div class="absolute bottom-0 right-0 sm:w-fit w-1/4">
+    <Image loading={"eager"} src={ornamenbr} alt="ornament bottom roight" />
+  </div>
+
   <div
     class="relative max-w-6xl mx-auto h-full flex flex-col items-center justify-center space-y-8"
   >

@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import bgModal from "@assets/dekorasi/bg-main-3.jpg";
+import { IconMail } from "@components/Icon";
 
 const namaTamu = Astro.url.searchParams.get("nama");
 const gelarTamu = Astro.url.searchParams.get("to");
@@ -32,6 +33,18 @@ const gelarTamu = Astro.url.searchParams.get("to");
   </div>
 
   <div
+    class="absolute z-10 transform -translate-x-1/2 left-1/2 sm:w-1/4 w-1/2 bottom-1/2"
+  >
+    <div class="relative py-4">
+      <div class="space-y-1">
+        <p class="font-bold text-8xl font-bonheur-royale">I</p>
+        <p class="font-bold text-4xl font-parisienne text-center">&</p>
+        <p class="font-bold text-8xl font-bonheur-royale text-end">H</p>
+      </div>
+    </div>
+  </div>
+
+  <div
     class="absolute z-10 transform -translate-x-1/2 left-1/2 bottom-10 w-11/12 text-gray-800"
   >
     <div class="text-center py-4">
@@ -42,7 +55,7 @@ const gelarTamu = Astro.url.searchParams.get("to");
         </p>
         <p class="font-semibold text-xl">{namaTamu || "Nama Tamu"}</p>
       </div>
-      <div class="mt-4">
+      <!-- <div class="mt-4">
         <p>You are invited to</p>
         <p>Our Wedding Celebration</p>
       </div>
@@ -50,11 +63,12 @@ const gelarTamu = Astro.url.searchParams.get("to");
         <h3 class="text-4xl font-bold">Iin</h3>
         <p class="text-3xl content-center">&</p>
         <h3 class="text-4xl font-bold">Husnun</h3>
-      </div>
+      </div> -->
       <button
-        class="w-3/4 mt-8 py-2 bg-coklat-petro text-white font-semibold border border-coklat-petro hover:cursor-pointer hover:bg-white hover:text-coklat-petro rounded-md transition-colors duration-300"
+        class="w-3/4 mx-auto flex items-center justify-center gap-x-2 mt-8 py-2 bg-coklat-petro text-white font-semibold border border-coklat-petro hover:cursor-pointer hover:bg-white hover:text-coklat-petro rounded-md transition-colors duration-300"
         id="openButton"
       >
+        <IconMail />
         Buka Undangan
       </button>
     </div>
