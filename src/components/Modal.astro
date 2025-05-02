@@ -2,6 +2,9 @@
 import { Image } from "astro:assets";
 
 import bgModal from "@assets/dekorasi/bg-main-3.jpg";
+import ornamentl from "@assets/dekorasi/orn-top-left.webp";
+import ornamentr from "@assets/dekorasi/orn-top-right.webp";
+import ornamenGunungan from "@assets/dekorasi/ornamen-gunungan.webp";
 import { IconMail } from "@components/Icon";
 
 const namaTamu = Astro.url.searchParams.get("nama");
@@ -32,15 +35,32 @@ const gelarTamu = Astro.url.searchParams.get("to");
     </div>
   </div>
 
+  <div class="absolute lg:hidden top-0 left-0 lg:w-1/4 md:w-1/2 w-3/4">
+    <Image loading={"eager"} src={ornamentl} alt="ornament top left" />
+  </div>
+
+  <div class="absolute lg:hidden top-0 right-0 lg:w-1/4 md:w-1/2 w-3/4">
+    <Image loading={"eager"} src={ornamentr} alt="ornament top roight" />
+  </div>
+
   <div
-    class="absolute z-10 transform -translate-x-1/2 left-1/2 sm:w-1/4 w-1/2 bottom-1/2"
+    class="absolute z-10 transform -translate-x-1/2 left-1/2 bottom-1/2 sm:w-1/4 w-1/2"
   >
     <div class="relative py-4">
       <div class="space-y-1">
         <p class="font-bold text-8xl font-bonheur-royale">I</p>
-        <p class="font-bold text-4xl font-parisienne text-center">&</p>
+        <p class="font-bold text-5xl font-parisienne text-center">&</p>
         <p class="font-bold text-8xl font-bonheur-royale text-end">H</p>
       </div>
+    </div>
+    <div
+      class="absolute transform -translate-x-1/2 left-1/2 bottom-0 lg:top-0 w-3/4 lg:w-1/2 opacity-25"
+    >
+      <Image
+        loading={"eager"}
+        src={ornamenGunungan}
+        alt="ornament top roight"
+      />
     </div>
   </div>
 
