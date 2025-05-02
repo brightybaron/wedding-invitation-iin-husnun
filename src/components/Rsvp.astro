@@ -184,7 +184,8 @@ const { namaTamu } = Astro.props;
             form.reset();
           } else {
             hideLoadingSpinner();
-            showMessage(result.error || "Gagal mengirim RSVP", "error");
+            console.error("Error submitting form:", result.error);
+            showMessage("Gagal mengirim RSVP, silakan coba lagi", "error");
           }
         } catch (error) {
           console.error("Error submitting form:", error);

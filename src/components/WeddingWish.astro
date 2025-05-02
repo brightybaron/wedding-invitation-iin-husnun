@@ -210,7 +210,8 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
             form.reset();
           } else {
             hideLoadingSpinner();
-            showMessage(result.error || "Gagal mengirim ucapan", "error");
+            console.error("Error submitting form:", result.error);
+            showMessage("Gagal mengirim ucapan, silakan coba lagi", "error");
             // Optional: You could remove the newly added comment if the API call fails
           }
         } catch (error) {
