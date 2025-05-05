@@ -104,7 +104,9 @@ const ucapanList = ucapan.success ? ucapan.data : [];
               ucapanList?.map((item: any) => (
                 <div class="mx-auto space-y-1">
                   <p class="text-blue-jeans font-semibold">{item.tamu.nama}</p>
-                  <p class="indent-2">{item.isiUcapan}</p>
+                  <p class="indent-4 text-justify px-1 leading-5">
+                    {item.isiUcapan}
+                  </p>
                 </div>
               ))
             }
