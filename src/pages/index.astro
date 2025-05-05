@@ -9,6 +9,7 @@ import Rsvp from "@components/Rsvp.astro";
 import Sound from "@components/Sound";
 import WeddingWish from "@components/WeddingWish.astro";
 import Layout from "@layouts/Layout.astro";
+import { getUcapan } from "@lib/data";
 
 const namaTamu = Astro.url.searchParams.get("nama");
 
@@ -44,6 +45,8 @@ const acara = {
     linkmap: "https://maps.app.goo.gl/ckM7XtkUASGqyYVt7",
   },
 };
+
+const ucapanList = await getUcapan();
 ---
 
 <Modal />
@@ -159,7 +162,7 @@ const acara = {
       </div>
     </Rsvp>
 
-    <WeddingWish namaTamu={namaTamu}>
+    <WeddingWish namaTamu={namaTamu} ucapan={ucapanList}>
       <div
         class="w-full h-auto absolute -top-0.5 rotate-x-180 text-coklat-petro"
       >

@@ -8,8 +8,8 @@ import { getUcapan } from "@lib/data";
 const { namaTamu } = Astro.props;
 
 // Get existing ucapan/wishes for display
-const ucapanResult = await getUcapan();
-const ucapanList = ucapanResult.success ? ucapanResult.data : [];
+const { ucapan } = Astro.props;
+const ucapanList = ucapan.success ? ucapan.data : [];
 ---
 
 <section class="relative h-full w-full overflow-hidden py-12">
@@ -101,7 +101,7 @@ const ucapanList = ucapanResult.success ? ucapanResult.data : [];
             id="ucapanContainer"
           >
             {
-              ucapanList?.map((item) => (
+              ucapanList?.map((item: any) => (
                 <div class="mx-auto space-y-1">
                   <p class="text-blue-jeans font-semibold">{item.tamu.nama}</p>
                   <p class="indent-2">{item.isiUcapan}</p>
