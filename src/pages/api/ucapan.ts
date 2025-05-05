@@ -1,50 +1,70 @@
-// File: pages/api/ucapan.ts
-import type { APIRoute } from "astro";
-import { submitUcapan } from "@lib/data";
+import { prisma } from "@lib/prisma";
 
-export const POST: APIRoute = async ({ request }) => {
+export async function POST({ request }: { request: Request }) {
   try {
-    const body = await request.json();
-    const { nama, isiUcapan } = body;
+    const formData = await request.formData();
+    const nama = formData.get("nama") as string;
+    const isiUcapan = formData.get("ucapan") as string;
 
+    // Validasi input dasar
     if (!nama || !isiUcapan) {
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Nama dan ucapan harus diisi",
+          message: "Nama dan ucapan diperlukan",
         }),
-        { status: 400 }
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
     }
 
-    const result = await submitUcapan(nama, isiUcapan);
-
-    if (!result.success) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error:
-            (result as { error: string }).error || "Gagal menyimpan ucapan",
-        }),
-        { status: 500 }
-      );
-    }
+    // Simpan ucapan ke database menggunakan Prisma
+    const newUcapan = await prisma.ucapan.create({
+      data: {
+        tamu: {
+          create: {
+            nama,
+          },
+        },
+        isiUcapan,
+      },
+      include: {
+        tamu: true,
+      },
+    });
 
     return new Response(
       JSON.stringify({
         success: true,
-        data: result.data,
+        message: "Terima kasih telah mengirimkan doa/ucapan!",
+        data: newUcapan,
       }),
-      { status: 200 }
+      {
+        status: 201,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
   } catch (error) {
-    console.error("Error in ucapan API:", error);
+    console.error("Error creating ucapan:", error);
+
     return new Response(
       JSON.stringify({
         success: false,
-        error: "Server error",
+        message: "Gagal mengirim ucapan",
+        error: (error as Error).message,
       }),
-      { status: 500 }
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
   }
-};
+}
