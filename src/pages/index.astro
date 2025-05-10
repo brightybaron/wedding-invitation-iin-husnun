@@ -13,10 +13,10 @@ import { getUcapan } from "@lib/data";
 import { decodeFromBase64 } from "@lib/utils";
 
 const nama = Astro.url.searchParams.get("nama");
-const gelar = Astro.url.searchParams.get("to");
+const gelarTamu = Astro.url.searchParams.get("to");
 
 const namaTamu = nama && decodeFromBase64(nama);
-const gelarTamu = gelar && decodeFromBase64(gelar);
+// const gelarTamu = gelar && decodeFromBase64(gelar);
 
 const manten = {
   bride: {
