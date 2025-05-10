@@ -10,8 +10,13 @@ import Sound from "@components/Sound";
 import WeddingWish from "@components/WeddingWish.astro";
 import Layout from "@layouts/Layout.astro";
 import { getUcapan } from "@lib/data";
+import { decodeFromBase64 } from "@lib/utils";
 
-const namaTamu = Astro.url.searchParams.get("nama");
+const nama = Astro.url.searchParams.get("nama");
+const gelar = Astro.url.searchParams.get("to");
+
+const namaTamu = nama && decodeFromBase64(nama);
+const gelarTamu = gelar && decodeFromBase64(gelar);
 
 const manten = {
   bride: {
@@ -49,7 +54,7 @@ const acara = {
 const ucapanList = await getUcapan();
 ---
 
-<Modal />
+<Modal {namaTamu} {gelarTamu} />
 <Layout>
   <div
     class="hidden opacity-0 transition-opacity duration-1000"
