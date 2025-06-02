@@ -60,13 +60,29 @@ export const yearDateFormatter = (date: Date) => {
   return date.getFullYear();
 };
 
+export const formatDateWish = (dateStr: Date) => {
+  const date = new Date(dateStr);
+
+  return date.toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+};
+
 export interface Base64EncodeOptions {
   encodeEachLineSeparately?: boolean;
   splitInto76CharChunks?: boolean;
   urlSafeEncoding?: boolean;
 }
 
-export function encodeToBase64(data: string, options: Base64EncodeOptions = {}): string {
+export function encodeToBase64(
+  data: string,
+  options: Base64EncodeOptions = {}
+): string {
   const {
     encodeEachLineSeparately = false,
     splitInto76CharChunks = false,
@@ -77,7 +93,7 @@ export function encodeToBase64(data: string, options: Base64EncodeOptions = {}):
 
   if (encodeEachLineSeparately) {
     const lines = data.split(/\r?\n/);
-    result = lines.map(line => btoa(line)).join('\n');
+    result = lines.map((line) => btoa(line)).join("\n");
   } else {
     result = btoa(data);
   }
@@ -87,39 +103,36 @@ export function encodeToBase64(data: string, options: Base64EncodeOptions = {}):
     for (let i = 0; i < result.length; i += 76) {
       chunks.push(result.substring(i, i + 76));
     }
-    result = chunks.join('\n');
+    result = chunks.join("\n");
   }
 
   if (urlSafeEncoding) {
-    result = result.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    result = result.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   }
 
   return result;
 }
-
 
 export interface Base64DecodeOptions {
   decodeEachLineSeparately?: boolean;
   urlSafeEncoding?: boolean;
 }
 
-export function decodeFromBase64(encoded: string, options: Base64DecodeOptions = {}): string {
-  const {
-    decodeEachLineSeparately = false,
-    urlSafeEncoding = false,
-  } = options;
+export function decodeFromBase64(
+  encoded: string,
+  options: Base64DecodeOptions = {}
+): string {
+  const { decodeEachLineSeparately = false, urlSafeEncoding = false } = options;
 
   let normalized = encoded;
 
   if (urlSafeEncoding) {
-    normalized = normalized
-      .replace(/-/g, '+')
-      .replace(/_/g, '/');
+    normalized = normalized.replace(/-/g, "+").replace(/_/g, "/");
 
     // Pad with '=' to ensure it's a valid Base64 string
     const padding = normalized.length % 4;
     if (padding > 0) {
-      normalized += '='.repeat(4 - padding);
+      normalized += "=".repeat(4 - padding);
     }
   }
 
@@ -127,7 +140,7 @@ export function decodeFromBase64(encoded: string, options: Base64DecodeOptions =
 
   if (decodeEachLineSeparately) {
     const lines = normalized.split(/\r?\n/);
-    result = lines.map(line => atob(line)).join('\n');
+    result = lines.map((line) => atob(line)).join("\n");
   } else {
     result = atob(normalized);
   }

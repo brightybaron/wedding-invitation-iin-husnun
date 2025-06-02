@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import ornament5 from "@assets/dekorasi/ornamen-7.webp";
 import ornamentBg from "@assets/dekorasi/bg-main-3.jpg";
 import DualHeading from "@components/DualHeading.astro";
+import { formatDateWish } from "@lib/utils";
 
 const { namaTamu } = Astro.props;
 
@@ -105,6 +106,9 @@ const ucapanList = ucapan.success ? ucapan.data : [];
                   <p class="text-blue-jeans font-semibold">{item.tamu.nama}</p>
                   <p class="indent-4 text-justify px-1 leading-5">
                     {item.isiUcapan}
+                  </p>
+                  <p class="text-end text-xs text-gray-400 font-medium italic">
+                    {formatDateWish(item.createdAt)}
                   </p>
                 </div>
               ))
