@@ -26,8 +26,9 @@ export async function POST({ request }: { request: Request }) {
     const newUcapan = await prisma.ucapan.create({
       data: {
         tamu: {
-          create: {
-            nama,
+          connectOrCreate: {
+            where: { nama },
+            create: { nama },
           },
         },
         isiUcapan,
